@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         if let lastCloseDate = lastCloseDate {
             let timeInterval: Double = NSDate().timeIntervalSinceDate(lastCloseDate)
-            if (timeInterval > 5) {
+            if (timeInterval > 600) {
                 myViewController?.clear()
             }
         }
@@ -43,7 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         if let lastCloseDate = lastCloseDate {
             let timeInterval: Double = NSDate().timeIntervalSinceDate(lastCloseDate)
-            if (timeInterval > 5) {
+            if (timeInterval > 600) {
                 myViewController?.clear()
             }
         }
