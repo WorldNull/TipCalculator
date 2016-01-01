@@ -81,6 +81,10 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="d7o-1e-3vB">
+                                <rect key="frame" x="0.0" y="352" width="320" height="216"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -105,6 +109,7 @@
                     <connections>
                         <outlet property="barSeparator" destination="2hB-9o-sNa" id="1w2-Gn-tHg"/>
                         <outlet property="billField" destination="7Vu-YH-CfS" id="iPo-wL-DQF"/>
+                        <outlet property="imageView" destination="d7o-1e-3vB" id="obD-9V-0Iz"/>
                         <outlet property="subView" destination="GWA-Ja-K1d" id="CX4-Xu-PvP"/>
                         <outlet property="tipControl" destination="ccp-iT-w25" id="ckA-Lh-PcK"/>
                         <outlet property="tipLabel" destination="dG0-b2-RjG" id="lnl-Ee-HXY"/>

@@ -14,9 +14,15 @@ class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         defaultTipControl.selectedSegmentIndex = defaultTipIndex
 
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.view.backgroundColor = UIColor(red: 0.98, green:0.98, blue: 0.48, alpha: 1.0)
     }
 
     override func didReceiveMemoryWarning() {

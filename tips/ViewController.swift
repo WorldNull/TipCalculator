@@ -18,6 +18,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var totalLabel: UILabel!
     @IBOutlet weak var barSeparator: UIView!
     
+    @IBOutlet weak var imageView: UIImageView!
+    
     @IBOutlet weak var subView: UIView!
     
     var tipPercentages = [0.18, 0.2, 0.22]
@@ -29,10 +31,21 @@ class ViewController: UIViewController {
     var enterSound: AVAudioPlayer = AVAudioPlayer()
     var clearSound: AVAudioPlayer = AVAudioPlayer()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        let appDelegate:AppDelegate = UIApplication.sharedApplication().delegate! as! AppDelegate
+        appDelegate.myViewController = self
+        
+        imageView.animationImages = [
+            
+            UIImage(named: "merryChristmas.jpg")!,
+            UIImage(named: "newYear.jpg")!,
+            UIImage(named: "resolutions.jpg")!
+        ]
+        imageView.animationDuration = 5
+        imageView.startAnimating()
+        
         tipLabel.text = "$0.00"
         totalLabel.text="$0.00"
         self.billField.becomeFirstResponder()
@@ -53,11 +66,16 @@ class ViewController: UIViewController {
             
             try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryAmbient)
             try AVAudioSession.sharedInstance().setActive(true)
+            
         }
         
         catch {
             print(error)
         }
+        backSpaceSound.prepareToPlay()
+        enterSound.prepareToPlay()
+        clearSound.prepareToPlay()
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -93,11 +111,9 @@ class ViewController: UIViewController {
             let currentAmountSize = billField.text!.characters.count
             
             if (previousAmountSize > currentAmountSize) {
-                backSpaceSound.prepareToPlay()
                 backSpaceSound.play()
                 
             } else {
-                enterSound.prepareToPlay()
                 enterSound.play()
             }
             
@@ -117,13 +133,18 @@ class ViewController: UIViewController {
     
     @IBAction func clearAmount(sender: AnyObject) {
         clearSound.play()
+        clear()
+        
+    }
+    
+    func clear() {
         billField.text = ""
         tipLabel.text = "$0.00"
         totalLabel.text="$0.00"
         previousAmountSize = 0
         
         setSubView()
-        
+
     }
     
     func setTipAndToTal() {
@@ -135,8 +156,11 @@ class ViewController: UIViewController {
         
         let total = billAmount + tip
         
-        tipLabel.text = String(format: "$%.2f", tip)
-        totalLabel.text = String(format: "$%.2f", total)
+        let currencyFormatter = NSNumberFormatter()
+        currencyFormatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
+        currencyFormatter.locale = NSLocale.currentLocale()
+        tipLabel.text = currencyFormatter.stringFromNumber(tip)!
+        totalLabel.text = currencyFormatter.stringFromNumber(total)!
 
     }
     
@@ -150,6 +174,9 @@ class ViewController: UIViewController {
             billFieldActive = false
         }
     }
+    
+    
+    
     
 
     
